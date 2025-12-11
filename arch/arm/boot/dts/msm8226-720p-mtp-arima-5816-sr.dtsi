@@ -1,0 +1,81 @@
+/include/ "msm8226-720p-mtp-arima.dtsi"
+
+
+// [5816][Keypad][akenhsu] Porting Vol keys for SR(E2) 20150827 BEGIN
+&soc {
+	gpio_keys {
+		vol_up {
+			label = "volume_up";
+			gpios = <&msmgpio 106 0x1>;
+			linux,input-type = <1>;
+			linux,code = <114>;
+			// gpio-key,wakeup;
+			debounce-interval = <15>;
+		};
+	};
+};
+
+&spmi_bus {
+	qcom,pm8226@0 {
+		qcom,power-on@800 {
+			qcom,pon_2 {
+				qcom,pon-type = <1>;
+				qcom,pull-up = <1>;
+				linux,code = <115>;
+			};
+		};
+	};
+};
+// [5816][Keypad][akenhsu] 20150827 END
+
+// [5816][LED][akenhsu] Porting RGB LEDs for SR(E2) 20150827 BEGIN
+&spmi_bus {
+	qcom,pm8226@0 {
+		qcom,leds@a300 {
+			status = "okay";
+			qcom,led_mpp_4 {
+				label = "mpp";
+				linux,name = "red";
+				linux,default-trigger = "battery-full";
+				qcom,default-state = "off";
+				qcom,max-current = <40>;
+				qcom,current-setting = <5>;
+				qcom,id = <6>;
+				qcom,mode = "pwm";
+				qcom,pwm-us = <1000>;
+				qcom,source-sel = <8>;
+				qcom,mode-ctrl = <0x60>;
+				qcom,pwm-channel = <0>;
+				qcom,start-idx = <20>;
+				qcom,ramp-step-ms = <120>;
+				qcom,duty-pcts = [00 00 50 99 99 99 50 00];
+				qcom,use-blink;
+			};
+		};
+
+		qcom,leds@a500 {
+			status = "okay";
+			qcom,led_mpp_6 {
+				label = "mpp";
+				linux,name = "green";
+				linux,default-trigger = "none";
+				qcom,default-state = "off";
+				qcom,max-current = <40>;
+				qcom,current-setting = <5>;
+				qcom,id = <6>;
+				qcom,mode = "pwm";
+				qcom,pwm-us = <1000>;
+				qcom,mode-ctrl = <0x60>;
+				qcom,source-sel = <10>;
+				qcom,pwm-channel = <5>;
+				qcom,start-idx = <1>;
+				qcom,ramp-step-ms = <120>;
+				qcom,duty-pcts = [00 00 50 99 99 99 50 00];
+				qcom,use-blink;
+			};
+		};
+	};
+};
+// [5816][LED][akenhsu] 20150827 END
+
+
