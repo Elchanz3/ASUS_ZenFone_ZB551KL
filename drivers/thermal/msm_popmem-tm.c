@@ -153,7 +153,12 @@ static int __devinit pop_mem_tm_probe(struct platform_device *pdev)
 	void __iomem *base = NULL;
 
 	rc = len = 0;
-	numcontrollers = get_num_populated_chipselects();
+    /*
+    * Snapdragon 400 uses a single memory controller with LPDDR3.
+    * get_num_populated_chipselects() is not available on this kernel.
+    * LPDDR3 follows the same refresh encoding as LPDDR2.
+    */
+        numcontrollers = 2;
 
 	if (pdev->id >= numcontrollers) {
 		pr_err("%s: memory controller %d does not exist", __func__,
