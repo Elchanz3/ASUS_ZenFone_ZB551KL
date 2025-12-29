@@ -29,4 +29,3 @@ obj-$(CONFIG_SW_SYNC)	+= sw_sync.o
 
 ccflags-$(CONFIG_DEBUG_DRIVER) := -DDEBUG
 
-obj-$(CONFIG_ASSISTED_SUPERUSER) += superuser.o
