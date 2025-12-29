@@ -54,3 +54,6 @@ GTAGS
 arch/arm/mach-msm/smd_rpc_sym.c
 
 /out
+/AIK
+/arch/arm/boot/dts
+/image_output
