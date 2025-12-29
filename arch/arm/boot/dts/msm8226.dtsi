@@ -174,8 +174,8 @@ qcom,asusdebug {
 		reg = <0xfdc00000 0xff000>;
 		interrupts = <0 44 0>;
 		vdd-supply = <&gdsc_venus>;
-		qcom,load-freq-tbl = <352800 160000000>,
-			<244800 133330000>,
+		qcom,load-freq-tbl = <352800 170000000>,
+			<244800 143330000>,
 			<108000  66700000>;
 		qcom,hfi = "venus";
 		qcom,bus-ports = <1>;
@@ -808,7 +808,7 @@ qcom,asusdebug {
 				<78 512 400000 800000>, /* 200 MB/s */
 				<78 512 2048000 4096000>; /* Max. bandwidth */
 		qcom,bus-bw-vectors-bps = <0 400000 20000000 25000000 50000000
-						100000000 200000000 4294967295>;
+						100000000 233000000 4294967295>;
 
 		status = "disabled";
 	};
@@ -836,7 +836,7 @@ qcom,asusdebug {
 				<78 512 400000 800000>, /* 200 MB/s */
 				<78 512 2048000 4096000>; /* Max. bandwidth */
 		qcom,bus-bw-vectors-bps = <0 400000 20000000 25000000 50000000
-						100000000 200000000 4294967295>;
+						100000000 233000000 4294967295>;
 
 		status = "disabled";
 	};
@@ -962,7 +962,7 @@ qcom,asusdebug {
 			<&msmgpio 39 0>; /* DATA3 */
 		qcom,gpio-names = "CLK", "CMD", "DAT0", "DAT1", "DAT2", "DAT3";
 
-		qcom,clk-rates = <400000 20000000 25000000 50000000 100000000>;
+		qcom,clk-rates = <400000 20000000 25000000 50000000 133000000>;
 
 		qcom,msm-bus,name = "sdhc3";
 		qcom,msm-bus,num-cases = <8>;
@@ -1015,7 +1015,7 @@ qcom,asusdebug {
 		interrupts = <0 97 0>;
 		interrupt-names = "qup_err_intr";
 		qcom,i2c-bus-freq = <400000>;
-		qcom,i2c-src-freq = <19200000>;
+		qcom,i2c-src-freq = <21200000>;
 		qcom,sda-gpio = <&msmgpio 10 0>;
 		qcom,scl-gpio = <&msmgpio 11 0>;
 		qcom,master-id = <86>;
@@ -1030,7 +1030,7 @@ qcom,asusdebug {
 		interrupts = <0 98 0>;
 		interrupt-names = "qup_err_intr";
 		qcom,i2c-bus-freq = <100000>;
-		qcom,i2c-src-freq = <19200000>;
+		qcom,i2c-src-freq = <21200000>;
 		qcom,master-id = <86>;
 	};
 
@@ -1045,7 +1045,7 @@ qcom,asusdebug {
 		interrupt-names = "qup_err_intr";
 		interrupts = <0 99 0>;
 		qcom,i2c-bus-freq = <400000>;
-		qcom,i2c-src-freq = <19200000>;
+		qcom,i2c-src-freq = <21200000>;
 		qcom,sda-gpio = <&msmgpio 18 0>;
 		qcom,scl-gpio = <&msmgpio 19 0>;
 	};
@@ -1062,7 +1062,7 @@ qcom,asusdebug {
 		interrupt-names = "qup_err_intr";
 		interrupts = <0 100 0>;
 		qcom,i2c-bus-freq = <384000>;
-		qcom,i2c-src-freq = <19200000>;
+		qcom,i2c-src-freq = <21200000>;
 		qcom,sda-gpio = <&msmgpio 22 0>;
 		qcom,scl-gpio = <&msmgpio 23 0>;
 	};
@@ -1278,7 +1278,7 @@ qcom,asusdebug {
 		      <0xf9904000 0xF000>;
 		interrupt-names = "spi_irq", "spi_bam_irq";
 		interrupts = <0 95 0>, <0 238 0>;
-		spi-max-frequency = <50000000>;
+		spi-max-frequency = <53300000>;
 
 		qcom,gpio-mosi = <&msmgpio 0 0>;
 		qcom,gpio-miso = <&msmgpio 1 0>;
