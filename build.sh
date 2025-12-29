@@ -39,11 +39,42 @@ echo "[INFO] Checking environment..."
 command -v dtbTool >/dev/null || { echo "[ERROR] dtbTool not found in PATH"; exit 1; }
 command -v fastboot >/dev/null || { echo "[ERROR] fastboot not found in PATH"; exit 1; }
 
+
+############################################
+# GLOBAL CLEANUP FUNCTION
+############################################
+
+cleanup_workspace() {
+    echo "[INFO] Performing global cleanup before build..."
+    
+    
+    cd "$AIK_DIR"
+
+    ./cleanup.sh
+    
+    cd "$MATRIX_SRC"
+
+    # Remove previous RAM build
+    rm -rf "$RAM_SRC"
+
+    # Clean kernel out directory
+    rm -rf "$MATRIX_SRC/out"
+
+    # Clean temporary working directories
+    rm -rf "$MATRIX_SRC/temp"
+    rm -rf "$MATRIX_SRC/image_output"
+
+    echo "[INFO] Cleanup completed."
+}
+
 ############################################
 # PREPARE RAM BUILD
 ############################################
 
 echo "[INFO] Preparing RAM build directory..."
+
+cleanup_workspace
+
 rm -rf "$RAM_SRC"
 cp -a "$MATRIX_SRC" "$RAM_SRC"
 
@@ -127,7 +158,7 @@ echo "[INFO] Running AIK cleanup..."
 ./cleanup.sh
 
 echo "[INFO] Unpacking boot image..."
-./unpackimg.sh --nosudo
+./unpackimg.sh
 
 ############################################
 # REPLACE KERNEL + DTB
@@ -146,7 +177,7 @@ cp boot.img-dt split_img/
 ############################################
 
 echo "[INFO] Repacking boot image..."
-./repackimg.sh --nosudo
+./repackimg.sh
 
 ############################################
 # FINALIZE IMAGE
